@@ -19,7 +19,7 @@ import {
 import RangeCalendar from "@/components/select_filter/select_date_range/range_calendar";
 
 interface DateRangeProps {
-  past_date_options: {
+  date_range_options: {
     label: string;
     range: Date[];
   }[];
@@ -34,7 +34,7 @@ export default function SelectDateRange({
   setDate,
   open,
   setOpen,
-  past_date_options,
+  date_range_options,
 }: DateRangeProps) {
   const isMobile =
     typeof window !== "undefined" && window.innerWidth < breakpoints.sm;
@@ -44,14 +44,14 @@ export default function SelectDateRange({
       <DialogTrigger asChild>
         <Button
           variant="ghost"
-          className="w-full sm:w-[250px] justify-center text-center font-normal"
+          className="w-full max-w-[250px] min-w-[150px] justify-center text-center font-normal"
         >
           <CalendarIcon className="size-4" />
           {(() => {
             if (!date || (!date.from && !date.to)) {
               return <span>{date_range_dialog_title}</span>;
             }
-            const matched_past_date = past_date_options.find(
+            const matched_past_date = date_range_options.find(
               (past_date) =>
                 date.from &&
                 date.to &&
@@ -95,7 +95,7 @@ export default function SelectDateRange({
                 className="w-full border rounded p-2"
                 value={
                   date && date.from && date.to
-                    ? past_date_options.find(
+                    ? date_range_options.find(
                         (past_date) =>
                           past_date.range[0].toDateString() ===
                             date.from?.toDateString() &&
@@ -105,7 +105,7 @@ export default function SelectDateRange({
                     : ""
                 }
                 onChange={(e) => {
-                  const selected = past_date_options.find(
+                  const selected = date_range_options.find(
                     (past_date) => past_date.label === e.target.value
                   );
                   if (selected) {
@@ -115,7 +115,7 @@ export default function SelectDateRange({
                 }}
               >
                 <option value="">Select a range</option>
-                {past_date_options.map((past_date) => (
+                {date_range_options.map((past_date) => (
                   <option key={past_date.label} value={past_date.label}>
                     {past_date.label}
                   </option>
@@ -124,7 +124,7 @@ export default function SelectDateRange({
             </div>
           ) : (
             <div className="flex sm:flex-col gap-1 sm:border-r pr-2">
-              {past_date_options.map((past_date) => (
+              {date_range_options.map((past_date) => (
                 <Button
                   key={past_date.label}
                   variant="ghost"

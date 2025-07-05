@@ -14,6 +14,13 @@ export const past_year = "Past year";
 export const past_two_years = "Past 2 years";
 export const default_date_days_ago = 180; // Default to 6 months ago
 
+// Filter Selection - Status
+export const select_status_txt = "Select Status";
+export const all_launches = "All Launches";
+export const upcoming_launches = "Upcoming Launches";
+export const successful_launches = "Successful Launches";
+export const failed_launches = "Failed Launches";
+
 // Breakpoints - width in pixels
 export const breakpoints = {
   sm: 640, // for small screens
