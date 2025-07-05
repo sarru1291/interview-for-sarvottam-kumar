@@ -80,7 +80,7 @@ export default function SelectDateRange({
       </DialogTrigger>
 
       <DialogContent
-        className="p-2 max-w-[95vw] md:max-w-2xl"
+        className="p-2 max-w-[80vw] max-h-[80vh] md:max-w-2xl overflow-y-auto"
         showCloseButton={false}
       >
         <DialogHeader className="sr-only">

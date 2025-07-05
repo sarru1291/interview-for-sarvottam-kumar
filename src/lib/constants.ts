@@ -21,6 +21,23 @@ export const upcoming_launches = "Upcoming Launches";
 export const successful_launches = "Successful Launches";
 export const failed_launches = "Failed Launches";
 
+// Launch Data - Status
+export const status_success = "Success";
+export const status_failed = "Failed";
+export const status_upcoming = "Upcoming";
+
+// Launch Data - Table View
+export const table_head_no = "No:";
+export const table_head_launched = "Launched (UTC)";
+export const table_head_location = "Location";
+export const table_head_mission = "Mission";
+export const table_head_orbit = "Orbit";
+export const table_head_launch_status = "Launch Status";
+export const table_head_rocket = "Rocket";
+export const no_launches_found = "No result found for the specified filter.";
+export const no_of_col = 7;
+export const launch_list_per_page = 10;
+
 // Breakpoints - width in pixels
 export const breakpoints = {
   sm: 640, // for small screens
