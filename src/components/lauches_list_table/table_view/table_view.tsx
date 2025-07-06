@@ -12,6 +12,7 @@ import { Badge } from "@/components/shadcn-ui/badge";
 import {
   no_launches_found,
   no_of_col,
+  status_color,
   table_head_launch_status,
   table_head_launched,
   table_head_location,
@@ -22,17 +23,11 @@ import {
 } from "@/lib/constants";
 import { LaunchDataTableView } from "@/models/launch_data_view/launch_data_tableview";
 
-const statusColor: Record<string, string> = {
-  Success: "bg-green-100 text-green-800",
-  Failed: "bg-red-100 text-red-800",
-  Upcoming: "bg-yellow-100 text-yellow-800",
-};
-
 interface TableViewProps {
   isLoading: boolean;
   launches_list: LaunchDataTableView[];
   paginated_launch_data: LaunchDataTableView[];
-  setSelectedLaunchID: (id: number) => void;
+  viewLaunchDetail: (id: number) => void;
   current_page: number;
   launch_list_per_page: number;
 }
@@ -40,7 +35,7 @@ export function TableView({
   isLoading,
   launches_list,
   paginated_launch_data,
-  setSelectedLaunchID,
+  viewLaunchDetail,
   current_page,
   launch_list_per_page,
 }: TableViewProps) {
@@ -82,7 +77,7 @@ export function TableView({
               <TableRow
                 key={launch.id}
                 className="cursor-pointer hover:bg-muted border-b-0"
-                onClick={() => setSelectedLaunchID(launch.id)}
+                onClick={() => viewLaunchDetail(launch.id)}
               >
                 <TableCell className="py-4">
                   {index + 1 + (current_page - 1) * launch_list_per_page}
@@ -94,7 +89,7 @@ export function TableView({
                 <TableCell className="py-4">
                   <Badge
                     className={`px-2 rounded-full text-xs font-medium ${
-                      statusColor[launch.status]
+                      status_color[launch.status]
                     }`}
                   >
                     {launch.status}
