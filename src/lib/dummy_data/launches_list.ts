@@ -9,8 +9,8 @@ const no_of_data = 90;
 export const launches_list: LaunchDataTableView[] = Array.from({
   length: no_of_data,
 }).map((_, i) => ({
-  id: i + 1,
-  date_utc: "24 March 2006 at 22:30",
+  id: String(i + 1),
+  date_utc: "2017-02-19T14:39:00.000Z",
   location: "Kwajalein Atoll",
   mission: `Mission ${i + 1}`,
   orbit: "LEO",
