@@ -12,6 +12,7 @@ export const past_three_months = "Past 3 months";
 export const past_six_months = "Past 6 months";
 export const past_year = "Past year";
 export const past_two_years = "Past 2 years";
+export const past_five_years = "Past 5 years";
 export const default_date_days_ago = 180; // Default to 6 months ago
 
 // Filter Selection - Status

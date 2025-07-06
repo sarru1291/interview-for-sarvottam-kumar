@@ -20,6 +20,7 @@ import {
   status_color,
 } from "@/lib/constants";
 import { LaunchDataDialogView } from "@/models/launch_data_view/launch_data_dialogview";
+import { format } from "date-fns";
 import Image from "next/image";
 interface DialogViewProps {
   launch_detail: LaunchDataDialogView;
@@ -39,7 +40,12 @@ export function DialogView({
             <div className="flex">
               <div>
                 <Image
-                  src={launch_detail.icon_patch_small ?? "/placeholder.png"}
+                  src={
+                    launch_detail?.icon_patch_small &&
+                    launch_detail?.icon_patch_small != ""
+                      ? launch_detail.icon_patch_small
+                      : "/placeholder.png"
+                  }
                   alt="Mission Patch"
                   width={64}
                   height={64}
@@ -50,13 +56,17 @@ export function DialogView({
                 <div className="flex justify-between items-center">
                   <div className="pr-4">{launch_detail.mission}</div>
                   <div>
-                    <Badge
-                      className={`px-2 rounded-full text-xs font-medium ${
-                        status_color[launch_detail.status]
-                      }`}
-                    >
-                      {launch_detail.status}
-                    </Badge>
+                    {launch_detail.status ? (
+                      <Badge
+                        className={`px-2 rounded-full text-xs font-medium ${
+                          status_color[launch_detail.status]
+                        }`}
+                      >
+                        {launch_detail.status}
+                      </Badge>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
                 <div className="text-sm font-normal">
@@ -113,43 +123,47 @@ export function DialogView({
         <div className="flex flex-col text-sm">
           <div className="py-4 border-b-1 flex w-full">
             <div className="w-[40%] text-gray-500">{flight_number_txt}</div>
-            <div className="w-[60%]">{launch_detail.flight_number}</div>
+            <div className="w-[60%]">{launch_detail.flight_number ?? "-"}</div>
           </div>
           <div className="py-4 border-b-1 flex">
             <div className="w-[40%] text-gray-500">{mission_name_txt}</div>
-            <div className="w-[60%]">{launch_detail.mission}</div>
+            <div className="w-[60%]">{launch_detail.mission ?? "-"}</div>
           </div>
           <div className="py-4 border-b-1 flex">
             <div className="w-[40%] text-gray-500">{rocket_type_txt}</div>
-            <div className="w-[60%]">{launch_detail.rocket_type}</div>
+            <div className="w-[60%]">{launch_detail.rocket_type ?? "-"}</div>
           </div>
           <div className="py-4 border-b-1 flex">
             <div className="w-[40%] text-gray-500">{rocket_name_txt}</div>
-            <div className="w-[60%]">{launch_detail.rocket_name}</div>
+            <div className="w-[60%]">{launch_detail.rocket_name ?? "-"}</div>
           </div>
           <div className="py-4 border-b-1 flex">
             <div className="w-[40%] text-gray-500">{manufacturer_txt}</div>
-            <div className="w-[60%]">{launch_detail.manufacturer}</div>
+            <div className="w-[60%]">{launch_detail.manufacturer ?? "-"}</div>
           </div>
           <div className="py-4 border-b-1 flex">
             <div className="w-[40%] text-gray-500">{nationality_txt}</div>
-            <div className="w-[60%]">{launch_detail.nationality}</div>
+            <div className="w-[60%]">{launch_detail.nationality ?? "-"}</div>
           </div>
           <div className="py-4 border-b-1 flex">
             <div className="w-[40%] text-gray-500">{launch_date_txt}</div>
-            <div className="w-[60%]">{launch_detail.date_utc}</div>
+            <div className="w-[60%]">
+              {launch_detail.date_utc
+                ? format(launch_detail.date_utc, "dd MMMM yyyy 'at' HH:mm")
+                : "-"}
+            </div>
           </div>
           <div className="py-4 border-b-1 flex">
             <div className="w-[40%] text-gray-500">{payload_type_txt}</div>
-            <div className="w-[60%]">{launch_detail.payload_type}</div>
+            <div className="w-[60%]">{launch_detail.payload_type ?? "-"}</div>
           </div>
           <div className="py-4 border-b-1 flex">
             <div className="w-[40%] text-gray-500">{orbit_txt}</div>
-            <div className="w-[60%]">{launch_detail.orbit}</div>
+            <div className="w-[60%]">{launch_detail.orbit ?? "-"}</div>
           </div>
           <div className="py-4 flex">
             <div className="w-[40%] text-gray-500">{launch_site_txt}</div>
-            <div className="w-[60%]">{launch_detail.location}</div>
+            <div className="w-[60%]">{launch_detail.location ?? "-"}</div>
           </div>
         </div>
       </DialogContent>

@@ -27,7 +27,7 @@ interface TableViewProps {
   isLoading: boolean;
   launches_list: LaunchDataTableView[];
   paginated_launch_data: LaunchDataTableView[];
-  viewLaunchDetail: (id: number) => void;
+  viewLaunchDetail: (id: string) => void;
   current_page: number;
   launch_list_per_page: number;
 }
@@ -82,20 +82,24 @@ export function TableView({
                 <TableCell className="py-4">
                   {index + 1 + (current_page - 1) * launch_list_per_page}
                 </TableCell>
-                <TableCell className="py-4">{launch.date_utc}</TableCell>
-                <TableCell className="py-4">{launch.location}</TableCell>
-                <TableCell className="py-4">{launch.mission}</TableCell>
-                <TableCell className="py-4">{launch.orbit}</TableCell>
+                <TableCell className="py-4">{launch.date_utc || "-"}</TableCell>
+                <TableCell className="py-4">{launch.location || "-"}</TableCell>
+                <TableCell className="py-4">{launch.mission || "-"}</TableCell>
+                <TableCell className="py-4">{launch.orbit || "-"}</TableCell>
                 <TableCell className="py-4">
+                  {launch.status ? (
                   <Badge
                     className={`px-2 rounded-full text-xs font-medium ${
-                      status_color[launch.status]
+                    status_color[launch.status]
                     }`}
                   >
                     {launch.status}
                   </Badge>
+                  ) : (
+                  "-"
+                  )}
                 </TableCell>
-                <TableCell className="py-4">{launch.rocket}</TableCell>
+                <TableCell className="py-4">{launch.rocket || "-"}</TableCell>
               </TableRow>
             ))
           )}

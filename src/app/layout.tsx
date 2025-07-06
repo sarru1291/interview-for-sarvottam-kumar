@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { company_name, description } from "@/lib/constants";
+import { Suspense } from "react";
+import LoadingSkeleton from "@/components/loading_skeleton";
+import Header from "@/components/header/header";
 
 export const metadata: Metadata = {
   title: company_name,
@@ -14,7 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Header />
+        <Suspense fallback={<LoadingSkeleton />}>{children}</Suspense>
+      </body>
     </html>
   );
 }

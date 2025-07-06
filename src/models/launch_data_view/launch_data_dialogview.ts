@@ -1,7 +1,7 @@
 import { Links } from "@/models/launch_data/links";
 
 export interface LaunchDataDialogView {
-  id: string;
+  id: string | null;
   date_utc: string | null;
   mission: string | null;
   details?: string | null;
@@ -14,6 +14,6 @@ export interface LaunchDataDialogView {
   location?: string | null;
   orbit: string | null;
   payload_type: string | null;
-  status: string;
-  links: Links;
+  status: string | null;
+  links: Links | null;
 }

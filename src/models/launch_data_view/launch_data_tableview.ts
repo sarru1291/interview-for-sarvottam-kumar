@@ -1,5 +1,5 @@
 export interface LaunchDataTableView {
-  id: number;
+  id: string;
   date_utc: string;
   location: string;
   mission: string;
