@@ -49,12 +49,14 @@ export function DialogView({
                   alt="Mission Patch"
                   width={64}
                   height={64}
-                  className="w-16 h-16 mr-4"
+                  className="size-15 mr-4 min-w-15"
                 />
               </div>
               <div className="flex flex-col">
-                <div className="flex justify-between items-center">
-                  <div className="pr-4">{launch_detail.mission}</div>
+                <div className="flex flex-col justify-start items-start sm:flex-row">
+                  <div className="pb-2 sm:pb-0 sm:pr-3 text-left">
+                    {launch_detail.mission}
+                  </div>
                   <div>
                     {launch_detail.status ? (
                       <Badge
@@ -69,7 +71,7 @@ export function DialogView({
                     )}
                   </div>
                 </div>
-                <div className="text-sm font-normal">
+                <div className="text-sm font-normal self-start pt-1 sm:pt-0">
                   {launch_detail.rocket_name}
                 </div>
                 <div className="text-sm font-normal flex mt-2">
@@ -115,7 +117,7 @@ export function DialogView({
               </div>
             </div>
           </DialogTitle>
-          <DialogDescription className="text-black">
+          <DialogDescription className="text-black text-left">
             {launch_detail.details}{" "}
           </DialogDescription>
         </DialogHeader>
